@@ -117,4 +117,19 @@ class FilmController extends Controller
         return view('films.list', ["films" => $films_filtered, "title" => $title]);
     }
 
+        /**
+     * Una lista de todas las películas ordenadas por año (de más reciente a más antigua)
+     */
+    public function sortFilms()
+    {
+        $title = "Lista de películas ordenadas por año";
+        $films = FilmController::readFilms();
+
+        usort($films, function ($a, $b) {
+            return $b['year'] <=> $a['year'];
+        });
+
+        return view('films.list', ["films" => $films, "title" => $title]);
+    }
+
 }
