@@ -132,4 +132,16 @@ class FilmController extends Controller
         return view('films.list', ["films" => $films, "title" => $title]);
     }
 
+        /**
+     * Muestra el numero total de peliculas
+     */
+    public function countFilms()
+    {
+        $title = "Contador de películas";
+        $films = FilmController::readFilms();
+        $total = count($films);
+
+        return view('films.counter', ["total" => $total, "title" => $title]);
+    }
+
 }
